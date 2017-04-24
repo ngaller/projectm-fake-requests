@@ -28,11 +28,21 @@ server.get('/Job/GetJobSummary', (req, res, next) => {
 
 server.get('/Job/GetJobs', (req, res, next) => {
   setTimeout(() => {
+    // res.contentType = 'application/json'
+    // res.contentEncoding = 'utf-8'
     fs.readFile('samples/GetJobs.json', (err, data) => {
-      res.send(200, data)
+      res.header("Content-Type", "application/json")
+      res.end(data)
     })
-  }, 6000)
+  }, 400)
   return next()
 })
 
-server.listen(process.env.PORT)
+server.get('Job/Profile', (req, res, next) => {
+  fs.readFile('samples/Profile.json', (err, data) => {
+    res.header("Content-Type", "application/json")
+    res.end(data)
+  })
+})
+
+server.listen(process.env.PORT || 3000)
