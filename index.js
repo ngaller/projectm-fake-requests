@@ -2,64 +2,60 @@
  * Serve fake responses for the RFI Mobile App
  */
 
-const restify = require('restify'),
+const express = require('express'),
+  bodyParser = require('body-parser'),
   fs = require('fs')
 
-const server = restify.createServer({})
-server.use(restify.bodyParser({}))
+const server = express()
+server.use(bodyParser.json())
 
-server.get('/Authentication/Authenticate', (req, res, next) => {
+server.get('/Authentication/Authenticate', (req, res) => {
   const {Username, Password} = req.body
   if(Username == 'test' && Password == 'test') {
-    res.send(200, {
+    res.json(200, {
     })
   } else {
-    res.send(500, {
+    res.status(500).json({
       Message: 'Authentication Failed'
     })
   }
-  return next()
 })
 
-server.get('/Job/GetJobSummary', (req, res, next) => {
-  res.send(200, "3")
-  return next()
+server.get('/Job/GetJobSummary', (req, res) => {
+  res.status(200).send("3")
 })
 
-server.get('/Job/GetJobs', (req, res, next) => {
+server.get('/Job/GetJobs', (req, res) => {
   // res.contentType = 'application/json'
   // res.contentEncoding = 'utf-8'
   fs.readFile('samples/GetJobs.json', (err, data) => {
-    res.header("Content-Type", "application/json")
-    res.end(data)
+    res.setHeader("Content-Type", "application/json")
+    res.send(data)
   })
-  return next()
 })
 
 // a slow version to test iOS background fetch
-server.get('/Job/GetJobsSlow', (req, res, next) => {
+server.get('/Job/GetJobsSlow', (req, res) => {
   setTimeout(() => {
     // res.contentType = 'application/json'
     // res.contentEncoding = 'utf-8'
     fs.readFile('samples/GetJobs.json', (err, data) => {
       res.header("Content-Type", "application/json")
-      res.end(data)
+      res.send(data)
     })
   }, 40000)
-  return next()
 })
 
-server.post('Job/WriteJob', (req, res, next) => {
-  res.send(200, {
+server.post('Job/WriteJob', (req, res) => {
+  res.status(200).json({
     Id: req.body.Id
   })
-  return next()
 })
 
-server.get('Job/Profile', (req, res, next) => {
+server.get('Job/Profile', (req, res) => {
   fs.readFile('samples/Profile.json', (err, data) => {
     res.header("Content-Type", "application/json")
-    res.end(data)
+    res.send(data)
   })
 })
 
