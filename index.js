@@ -27,6 +27,16 @@ server.get('/Job/GetJobSummary', (req, res, next) => {
 })
 
 server.get('/Job/GetJobs', (req, res, next) => {
+  // res.contentType = 'application/json'
+  // res.contentEncoding = 'utf-8'
+  fs.readFile('samples/GetJobs.json', (err, data) => {
+    res.header("Content-Type", "application/json")
+    res.end(data)
+  })
+  return next()
+})
+
+server.get('/Job/GetJobsSlow', (req, res, next) => {
   setTimeout(() => {
     // res.contentType = 'application/json'
     // res.contentEncoding = 'utf-8'
@@ -34,7 +44,7 @@ server.get('/Job/GetJobs', (req, res, next) => {
       res.header("Content-Type", "application/json")
       res.end(data)
     })
-  }, 400)
+  }, 40000)
   return next()
 })
 
