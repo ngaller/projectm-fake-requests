@@ -15,6 +15,9 @@ server.post('/Authentication/Authenticate', (req, res) => {
   const {Username, Password} = req.body
   if(Username == 'test' && Password == 'test') {
     res.status(200).json({
+      "UserId": "someuserid",
+      "AccessToken": "trsnirsttnrsierststrrtrsur93q98",
+      "DeviceSecret": "tneistrntrsniarseinniaer"
     })
   } else {
     res.status(500).json({
