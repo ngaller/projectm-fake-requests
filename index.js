@@ -4,15 +4,17 @@
 
 const express = require('express'),
   bodyParser = require('body-parser'),
+  morgan = require('morgan'),
   fs = require('fs')
 
 const server = express()
 server.use(bodyParser.json())
+server.use(morgan('dev'))
 
-server.get('/Authentication/Authenticate', (req, res) => {
+server.post('/Authentication/Authenticate', (req, res) => {
   const {Username, Password} = req.body
   if(Username == 'test' && Password == 'test') {
-    res.json(200, {
+    res.status(200).json({
     })
   } else {
     res.status(500).json({
@@ -36,6 +38,7 @@ server.get('/Job/GetJobs', (req, res) => {
 
 // a slow version to test iOS background fetch
 server.get('/Job/GetJobsSlow', (req, res) => {
+  console.log('starting get job timeout...')
   setTimeout(() => {
     // res.contentType = 'application/json'
     // res.contentEncoding = 'utf-8'
