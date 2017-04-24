@@ -1,0 +1,27 @@
+{
+  "UserToken": {
+    "UserId": null,
+    "Username": null,
+    "DeviceToken": null,
+    "DeviceSecret": null,
+    "AuthToken": null,
+    "AuthTokenExpiration": null,
+    "Enabled": false,
+    "UrbanAirshipAssociations": [],
+    "DeviceTokens": [],
+    "CreateDate": "2017-04-11T21:28:13.654Z",
+    "ModifyDate": "2017-04-11T21:28:13.654Z",
+    "Id": "58b9a198e3333b06e4f8ca8e"
+  },
+  "CreateDate": "2017-04-11T21:28:13.654Z",
+  "ModifyDate": "2017-04-11T21:28:13.654Z",
+  "AccountName": null,
+  "ContactName": "Pay , RF Installations",
+  "ContactType": "Crew Member",
+  "BadgeExpirationDate": "2020-10-01T10:00:00Z",
+  "EPAIndividualExpirationDate": "2017-05-11T21:28:13.654Z",
+  "EPAAccountExpirationDate": null,
+  "GLInsuranceExpirationDate": null,
+  "AutoExpirationDate": null,
+  "Id": "58ed4a81915ad21d74ef4c6d"
+}
