@@ -36,6 +36,7 @@ server.get('/Job/GetJobs', (req, res, next) => {
   return next()
 })
 
+// a slow version to test iOS background fetch
 server.get('/Job/GetJobsSlow', (req, res, next) => {
   setTimeout(() => {
     // res.contentType = 'application/json'
@@ -45,6 +46,13 @@ server.get('/Job/GetJobsSlow', (req, res, next) => {
       res.end(data)
     })
   }, 40000)
+  return next()
+})
+
+server.post('Job/WriteJob', (req, res, next) => {
+  res.send(200, {
+    Id: req.body.Id
+  })
   return next()
 })
 
